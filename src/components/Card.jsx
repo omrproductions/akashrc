@@ -1,14 +1,19 @@
 import React, { useState } from 'react';
 import plus from '../assets/plus.jpg';
+import axios from 'axios';
 
 const Card = () => {
     const [companies, setCompanies] = useState([]);
 
-    const addCompany = () => {
+    const addCompany = async () => {
         const companyName = prompt("Enter the company's name:");
         if (companyName) {
+            const response =await axios.post("http://localhost:8000/addcompany", {companyName})
+            console.log(response.data);
+            
             setCompanies((prevCompanies) => [...prevCompanies, companyName]);
         }
+        
     };
 
     return (
