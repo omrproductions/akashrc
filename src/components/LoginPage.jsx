@@ -20,22 +20,16 @@ const LoginPage = () => {
       });
 
       // Assuming the token is in response.data.token
-      const { token } = response.data;
-      console.log(token);
-      
+      const {token}  = response.data;
       // Store the token in localStorage
       localStorage.setItem("authToken", token);
-
+      navigate("/home");
       // Clear the form
       setEmail("");
       setPassword("");
       setError(""); // Clear any previous errors
-
       // Redirect the user after successful login
-      navigate("/dashboard"); // Replace '/dashboard' with the route you want to navigate to
-
-      alert("Login successful!");
-
+      
     } catch (err) {
       // Handle error, for example: incorrect credentials
       setError("Login failed. Please check your credentials.");
@@ -47,6 +41,10 @@ const LoginPage = () => {
   const handleRegister = () => {
     navigate("/register"); // Redirect to the register page
   };
+
+  const handleDelete=()=>{
+    localStorage.removeItem("authToken")
+  }
 
   return (
     <div className="flex items-center justify-center h-screen">
@@ -100,6 +98,9 @@ const LoginPage = () => {
             className="bg-gray-500 hover:bg-gray-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
           >
             Register
+          </button>
+          <button onClick={handleDelete}>
+            Delete storage
           </button>
         </div>
       </form>

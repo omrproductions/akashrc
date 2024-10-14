@@ -1,11 +1,17 @@
 import React, { useState, useEffect } from "react";
 import plus from "../assets/plus.jpg";
 import axios from "axios";
+import { useNavigate } from "react-router-dom"; // For navigation
 
 const Card = () => {
   const [companies, setCompanies] = useState([]);
   const [error, setError] = useState(null);
-
+  const navigate = useNavigate();
+  const handleLogout =()=>{
+    localStorage.removeItem("authToken")
+    navigate("/login");
+    
+  }
   // Fetch companies from the API
   const fetchCompanies = async () => {
     try {
@@ -15,7 +21,6 @@ const Card = () => {
         throw new Error("Failed to fetch companies");
       }
       setCompanies(listOfCompanies);
-      console.log(listOfCompanies);
       // Store the fetched companies in state
     } catch (error) {
       setError(error.message);
@@ -34,8 +39,6 @@ const Card = () => {
         const response = await axios.post("http://localhost:8000/addcompany", {
           name: companyName,
         });
-        console.log(response.data);
-
         // After successfully adding, fetch updated company list
         fetchCompanies();
       } catch (error) {
@@ -64,6 +67,9 @@ const Card = () => {
         <div className="absolute inset-0 flex items-center justify-center">
           <h3 className="text-xl text-white">Add Company</h3>
         </div>
+      </button>
+      <button onClick={handleLogout}>
+        logout
       </button>
 
       {/* Render cards for each company */}
