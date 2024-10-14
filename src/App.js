@@ -1,7 +1,6 @@
 
 import './App.css';
 import Card from './components/Card.jsx';
-import Home from './components/Home';
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import RegisterPage from "./components/RegisterPage.jsx"; 
 import LoginPage from './components/LoginPage.jsx';

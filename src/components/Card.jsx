@@ -9,14 +9,14 @@ const Card = () => {
   // Fetch companies from the API
   const fetchCompanies = async () => {
     try {
-      const response = await fetch("http://localhost:8000/getcompanies");
-      console.log(response);
-      
-      if (!response.ok) {
+      const response = await axios.get("http://localhost:8000/getcompanies");
+      const listOfCompanies = response.data.companies; // provides an array of objects
+      if (response.statusText !== "OK") {
         throw new Error("Failed to fetch companies");
       }
-      const data = await response.json();
-      setCompanies(data); // Store the fetched companies in state
+      setCompanies(listOfCompanies);
+      console.log(listOfCompanies);
+      // Store the fetched companies in state
     } catch (error) {
       setError(error.message);
     }
@@ -25,15 +25,14 @@ const Card = () => {
   // Initial fetch of companies when the component mounts
   useEffect(() => {
     fetchCompanies();
-  }, []); // Empty dependency array to run only once when the component mounts
-
+  }, []);
   // Add a new company
   const addCompany = async () => {
     const companyName = prompt("Enter the company's name:");
     if (companyName) {
       try {
         const response = await axios.post("http://localhost:8000/addcompany", {
-          companyName,
+          name: companyName,
         });
         console.log(response.data);
 
@@ -74,9 +73,7 @@ const Card = () => {
           className="relative w-full h-[50vh] bg-cyan-600 border border-gray-300 rounded-[10%] shadow-md hover:shadow-lg transition-shadow duration-300 focus:outline-none flex items-center justify-center"
         >
           <div className="text-center">
-            <h3 className="text-lg font-semibold text-white">
-              {company.name}
-            </h3>
+            <h3 className="text-lg font-semibold text-white">{company.name}</h3>
           </div>
         </div>
       ))}
