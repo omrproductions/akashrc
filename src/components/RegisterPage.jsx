@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import axios from "axios"; // Make sure axios is installed
+import { useNavigate } from "react-router-dom";
 
 const RegisterPage = () => {
   const [email, setEmail] = useState("");
@@ -7,6 +8,10 @@ const RegisterPage = () => {
   const [confirmPassword, setConfirmPassword] = useState("");
   const [error, setError] = useState("");
   const [success, setSuccess] = useState("");
+  const navigate = useNavigate();
+  const handleLogin=()=>{
+    navigate("/login")
+  }
 
   // Function to check if user already exists and register the new user
   const handleRegister = async (event) => {
@@ -124,6 +129,13 @@ const RegisterPage = () => {
             className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
           >
             Register
+          </button>
+          <button
+            type="submit"
+            className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
+            onClick={handleLogin}
+          >
+            Login
           </button>
         </div>
       </form>

@@ -7,10 +7,16 @@ const Card = () => {
   const [companies, setCompanies] = useState([]);
   const [error, setError] = useState(null);
   const navigate = useNavigate();
+
   const handleLogout =()=>{
-    localStorage.removeItem("authToken")
-    navigate("/login");
-    
+    localStorage.removeItem("authToken");
+    const token = localStorage.getItem("authToken")
+    if(token){
+    navigate("/home");
+    }
+    else{
+      navigate("/login")
+    }
   }
   // Fetch companies from the API
   const fetchCompanies = async () => {
