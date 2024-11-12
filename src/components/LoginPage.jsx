@@ -1,6 +1,7 @@
 import React, { useState } from "react";
-import axios from "axios"; // Make sure axios is installed (npm install axios)
 import { useNavigate } from "react-router-dom"; // For navigation
+
+import axiosInstance from "../axiosInstanceOf";
 
 const LoginPage = () => {
   const [email, setEmail] = useState("");
@@ -14,8 +15,8 @@ const LoginPage = () => {
 
     try {
       // Call the login API with the email and password
-      const response = await axios.post(
-        "http://localhost:8000/api/user/login",
+      const response = await axiosInstance.post(
+        "/api/user/login",
         {
           email,
           password,
@@ -108,6 +109,7 @@ const LoginPage = () => {
           <button onClick={handleDelete}>Delete storage</button>
         </div>
       </form>
+      
     </div>
   );
 };

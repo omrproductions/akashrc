@@ -1,6 +1,7 @@
 import React, { useState } from "react";
-import axios from "axios"; // Make sure axios is installed
+
 import { useNavigate } from "react-router-dom";
+import axiosInstance from "../axiosInstanceOf";
 
 const RegisterPage = () => {
   const [email, setEmail] = useState("");
@@ -29,7 +30,7 @@ const RegisterPage = () => {
 
     try {
       // Check if user already exists by hitting the login API
-      const loginResponse = await axios.post("http://localhost:8000/api/user/login", {
+      const loginResponse = await axiosInstance.post("/api/user/login", {
         email,
         password,
       });
@@ -48,7 +49,7 @@ const RegisterPage = () => {
 
     try {
       // Register the new user if no existing user is found
-      const registerResponse = await axios.post("http://localhost:8000/api/user/register", {
+      const registerResponse = await axiosInstance.post("/api/user/register", {
         email,
         password,
       });
