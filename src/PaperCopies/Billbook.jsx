@@ -32,10 +32,11 @@ function BillBook() {
       "ST": "$15",
       "Charges": "$5",
       "Others": "$12",
-      "Amount": "$857"
+      "Amount": "$8577"
     },
 
   ]
+
   return (
     <div className='outline bg-orange-500' >
     
