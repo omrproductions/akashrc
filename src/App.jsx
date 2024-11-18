@@ -1,9 +1,8 @@
 import React from 'react'
 import Billbook from './PaperCopies/Billbook'
-
+import LrCopy from './PaperCopies/lrcopy'
 import BookingRegister from './PaperCopies/BookingRegister'
-import Letterpad from './'
-
+import Letterpad from './PaperCopies/Letterpad'
 
 function App() {
 
@@ -11,9 +10,9 @@ function App() {
   return (
    <>
     {/* <Billbook/> */}
-    {/* <Lrcopy /> */}
-    <BookingRegister/>
-    {/* <Letterpad/> */}
+  {/* <LrCopy /> */}
+    {/* <BookingRegister/> */}
+    <Letterpad/>
    </>
   )
 }

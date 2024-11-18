@@ -7,7 +7,7 @@ const LrCopy = () => {
   return (
     <div className="p-4">
       {/* Header Part */}
-      <Header vadapav={isLrCopy} />
+      <Header LrCopy={isLrCopy} />
 
       {/* GST No. Section */}
       <div className="bg-slate-100 border-b border-black text-sm">
